@@ -14,9 +14,29 @@ async function findTicketById(id: number) {
   });
 }
 
+async function addTicket(ticketTypeId: number, enrollmentId: number) {
+  return prisma.ticket.create ({
+    data: {
+      status: "RESERVED",
+      ticketTypeId,
+      enrollmentId
+    },
+    select: {
+      id: true,
+      status: true,
+      ticketTypeId: true,
+      enrollmentId: true,
+      TicketType: true,
+      createdAt: true,
+      updatedAt: true
+    }
+  });
+}
+
 const ticketsRepository = {
   getTicketTypes,
   findTicketById,
+  addTicket,
 };
 
 export default ticketsRepository;

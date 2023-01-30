@@ -15,9 +15,14 @@ async function findTicket(id: number) {
   return ticket;
 }
 
+async function newTicket(ticketTypeid: number, enrollmentId: number) {
+  return await ticketRepository.addTicket(ticketTypeid, enrollmentId);
+}
+
 const ticketsService = {
   findTicketsTypes,
   findTicket,
+  newTicket,
 };
 
 export default ticketsService;
